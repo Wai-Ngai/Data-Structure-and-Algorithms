@@ -1,5 +1,5 @@
 //
-// Created by wai-ngai on 24-3-22.
+// 单链表实现
 //
 #include <iostream>
 
