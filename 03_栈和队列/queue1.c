@@ -13,29 +13,42 @@ typedef int E;
 typedef struct Queue* ArrayQueue;
 
 struct Queue {
-    E* array;
+    E* array;       // 使用数组来储存元素
     int capacity;   // 数组容量
     int front;      // 队首指针
     int rear;       // 队尾指针
 };
 
+
+/**
+ *  初始化队列
+ * @param queue
+ * @return
+ */
 bool InitQueue(ArrayQueue queue) {
-    queue->array = malloc(sizeof(E) * 10);
+    queue->array = malloc(sizeof(E) * 10); // 在堆上为数组动态分配内存
     if (queue->array == NULL) return 0;
 
-    queue->capacity = 10;
-    queue->front = queue->rear = 0;  //默认情况下队首和队尾都指向0的位置
+    queue->capacity = 10;            // 指定数组容量
+    queue->front = queue->rear = 0;  // 默认情况下队首和队尾都指向0的位置
     return 1;
 }
 
+
+/**
+ *  入队操作，因为是数组实现，所以这里使用了循环队列
+ * @param queue
+ * @param element
+ * @return
+ */
 bool EnQueue(ArrayQueue queue, E element) {
     int pos = (queue->rear + 1) % queue->capacity;  //队尾先向前移动一位，注意取余计算才能实现循环，也就是容量，刚满以后，将尾指针移动到数组0位置
     if (pos == queue->front) {   //先判断队列是否已满，如果队尾下一个就是队首，那么说明数组已满，注意这里数组总是有一个位置没有装元素，不然不好判断是否装满
         printf("插入元素失败！队列已满 \n");
         return 0;
     }
-    queue->rear = pos;
-    queue->array[pos] = element;  //在新的位置插入元素
+    queue->rear = pos;            // 更新队尾指针
+    queue->array[pos] = element;  // 在新的位置插入元素
     return 1;
 }
 
@@ -44,7 +57,13 @@ bool IsEmpty(ArrayQueue queue) {
     return queue->front == queue->rear;
 }
 
-E DeQuque(ArrayQueue queue) {
+
+/**
+ *  出队操作
+ * @param queue
+ * @return
+ */
+E DeQueue(ArrayQueue queue) {
     if (IsEmpty(queue)) return -1;
 
     queue->front = (queue->front + 1) % queue->capacity; //先将队首指针后移1位，因为这里队首指针指向一个空位置
@@ -79,6 +98,6 @@ int main() {
     printf("正在出队！ \n");
     printf("队首 <<< ");
     while (!IsEmpty(&queue)) {
-        printf("%d ", DeQuque(&queue));
+        printf("%d ", DeQueue(&queue));
     }
 }

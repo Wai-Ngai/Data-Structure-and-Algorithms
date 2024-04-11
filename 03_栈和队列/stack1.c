@@ -42,7 +42,7 @@ bool InitStack(ArrayStack stack) {
  * @return
  */
 bool PushStack(ArrayStack stack, E element) {
-    //栈顶+1如果等于容量的话，那么说明已经塞满了，因为top从0开始
+    //栈顶+1(top从0开始)如果等于容量的话，那么说明已经塞满了
     if (stack->top + 1 == stack->capacity) {
         int new_capacity = stack->capacity + (stack->capacity >> 1);      // 新的容量大小为原来的1.5倍
         E* new_array = realloc(stack, new_capacity * sizeof(E));

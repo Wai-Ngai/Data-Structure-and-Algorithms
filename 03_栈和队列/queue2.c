@@ -43,7 +43,7 @@ bool InitQueue(ListQueue queue) {
 
 
 /**
- *  入队操作，入队其实直接在后面插入新的结点就行了
+ *  入队操作，入队其实直接在后面插入新的节点就行了
  * @param queue
  * @param element
  * @return
@@ -56,8 +56,8 @@ bool EnQueue(ListQueue queue, E element) {
     new_node->next = NULL;
     new_node->element = element;
 
-    queue->rear->next = new_node;  // 先让链表的尾节点的下一个指向新的结点
-    queue->rear = new_node;        // 然后移动队尾指针，让队尾指针指向新的尾结点
+    queue->rear->next = new_node;  // 先将新节点与链表尾部连起来
+    queue->rear = new_node;        // 然后移动队尾指针，让队尾指针指向新节点
     return 1;
 }
 
@@ -68,11 +68,11 @@ bool EnQueue(ListQueue queue, E element) {
  * @return
  */
 E DeQueue(ListQueue queue) {
-    E elem = queue->front->next->element;
+    E elem = queue->front->next->element;          // 跳过虚拟头节点，取出真正头节点的元素
     Node node = queue->front->next;                // 取出队首节点
-    queue->front->next = queue->front->next->next; // 直接让头结点指向下下个结点
+    queue->front->next = queue->front->next->next; // 直接让虚拟头结点指向下下个结点
 
-    if (node == queue->rear) {      //如果队尾就是待出队的结点，也就是就剩最后一个节点，那么队尾回到队首位置上
+    if (node == queue->rear) {      //如果队尾就是待出队的节点，也就是就剩最后一个节点，那么队尾回到队首位置上
         queue->rear = queue->front;
     }
 

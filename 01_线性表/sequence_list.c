@@ -20,7 +20,7 @@ struct List {
  * @return     是否初始化成功
  */
 _Bool initList(ArrayList list) {
-    list->array = (T *) malloc(sizeof(T) * 10);  // 使用malloc函数申请10个int类型大小的空间，供底层数组使用
+    list->array = (T *) malloc(sizeof(T) * 10);  // 使用malloc函数申请10个int类型大小的空间，供底层数组使用。这里的强制类型转换非必须，因为void*可以隐式转换为任意类型的指针
     if (list->array == NULL) {
         return 0;  // 如果内存空间申请失败，返回0
     }
@@ -33,7 +33,7 @@ _Bool initList(ArrayList list) {
  *   插入元素
  * @param list     要插入的表
  * @param element  要插入的元素
- * @param index    要插入的位置
+ * @param index    要插入的位置， 从1开始
  * @return         是否插入成功
  */
 _Bool insertList(ArrayList list, T element, int index) {
