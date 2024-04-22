@@ -21,4 +21,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 #add_executable(Data_Structure_and_Algorithms 03_栈和队列/queue2.c)
 
-add_executable(Data_Structure_and_Algorithms 04_树/BinaryTree.c)
+#add_executable(Data_Structure_and_Algorithms 04_树/BinaryTree.c)
+#add_executable(Data_Structure_and_Algorithms 04_树/BinaryTree2.c)
+#add_executable(Data_Structure_and_Algorithms 04_树/BinaryTree3.c)
+add_executable(Data_Structure_and_Algorithms 04_树/BinaryTree4.c)
