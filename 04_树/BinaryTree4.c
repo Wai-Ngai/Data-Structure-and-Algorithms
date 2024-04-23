@@ -73,8 +73,8 @@ Node rightRotation(Node root) {
 }
 
 Node leftRightRotation(Node root) {
-    root->left = leftRotation(root->left);
-    return rightRotation(root);
+    root->left = leftRotation(root->left);  // 注意这里左旋，是根节点下面两个节点左旋，将下下个节点旋转上来与根节点连接
+    return rightRotation(root);  // 这里右旋，是包括根节点在内的3个节点右旋，将中间节点作为新的根节点
 }
 
 Node rightLeftRotation(Node root) {
