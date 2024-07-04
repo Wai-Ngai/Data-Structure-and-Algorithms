@@ -26,4 +26,9 @@ set(CMAKE_CXX_STANDARD 14)
 
 #add_executable(Data_Structure_and_Algorithms 05_哈希表/HashTable.c)
 #add_executable(Data_Structure_and_Algorithms 05_哈希表/HashTable2.c)
-add_executable(Data_Structure_and_Algorithms 05_哈希表/HashTable3.c)
+#add_executable(Data_Structure_and_Algorithms 05_哈希表/HashTable3.c)
+
+#add_executable(Data_Structure_and_Algorithms 06_图/dfs_01.cpp)
+#add_executable(Data_Structure_and_Algorithms 06_图/island_01.cpp)
+#add_executable(Data_Structure_and_Algorithms 06_图/island_02.cpp)
+add_executable(Data_Structure_and_Algorithms 06_图/island_area_01.cpp)
