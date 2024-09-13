@@ -1,0 +1,39 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "cmake",                 // 使用命令cmake，根据CMakeLists.txt创建MakeFile文件
+            "command": "cmake",
+            "args": [
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "../"
+            ],
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "make",                  // 使用命令make，根据MakeFile生成可执行的程序
+            "group": "build",
+            "command": "make",
+            "args": [],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "cmake",
+                "make"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${workspaceFolder}/build"
+    }
+}
