@@ -33,7 +33,7 @@ struct Knight {
 std::priority_queue<Knight> que;
 
 int Heuristic(const Knight& k) {
-    return (k.x - b1) * (k.x - b1) + (k.y - b2) * (k.y - b2);  // 欧拉距离
+    return (k.x - b1) * (k.x - b1) + (k.y - b2) * (k.y - b2);  // 欧拉距离，统一不开根号，这样可以提高精度
 }
 
 void astar(const Knight& k) {
@@ -41,19 +41,20 @@ void astar(const Knight& k) {
     que.push(k);
 
     while (!que.empty()) {
-        cur = que.top(); que.pop();
-        if (cur.x == b1 && cur.y == b2) break;
+        cur = que.top(); que.pop();            // 取出f最小的节点
+
+        if (cur.x == b1 && cur.y == b2) break; // 到达目标节点
 
         for (int i = 0; i < 8; i++) {
-            next.x = cur.x + dir[i][0];
+            next.x = cur.x + dir[i][0];        // 按照规则，朝8个方向移动，计算下一个点
             next.y = cur.y + dir[i][1];
 
-            if (next.x < 1 || next.x > 1000 || next.y < 1 || next.y > 1000) continue;
+            if (next.x < 1 || next.x > 1000 || next.y < 1 || next.y > 1000) continue;  // 超过边界
 
             if (!moves[next.x][next.y]) {
-                moves[next.x][next.y] = moves[cur.x][cur.y] + 1;
+                moves[next.x][next.y] = moves[cur.x][cur.y] + 1;   // 移动的步数
 
-                next.g = cur.g + 5;
+                next.g = cur.g + 5;                 // 统一不开根号，这样可以提高精度，马走日，1 * 1 + 2 * 2 = 5
                 next.h = Heuristic(next);
                 next.f = next.g + next.h;
                 que.push(next);
