@@ -1,5 +1,5 @@
 /**
- *   最短路径： dijstra算法, 朴素版
+ *   最短路径： dijstra算法, 朴素版：原始思路
  *   Created by wai-ngai on 24-9-09.
  */
 
@@ -20,14 +20,14 @@ int main(int argc, char const *argv[]) {
     std::vector<std::vector<int>> grid(n+1, std::vector<int>(n+1, INT_MAX));
     for (int i = 0; i < m; i++) {
         std::cin >> p1 >> p2 >> val;
-        grid[p1][p2] = val;
+        grid[p1][p2] = val;                  // 使用邻接矩阵存储图
     }
 
     int start = 1;
     int end = n;
 
     std::vector<int> min_dist(n+1, INT_MAX);  // 从起点到每个节点的最短距离
-    std::vector<int> path(n+1, -1);           // 
+    std::vector<int> path(n+1, -1);           // 记录路径
     std::vector<bool> visited(n+1, false);    // 记录该节点是否被访问过
     min_dist[start] = 0;                      // 起点到自身的距离为0
 

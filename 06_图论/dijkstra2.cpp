@@ -1,5 +1,5 @@
 /**
- *   最短路径： dijstra算法, 堆优化版
+ *   最短路径： dijstra算法, 堆优化版：使用邻接表代替邻接矩阵存储图，使用优先级队列代替原始遍历查找代价最小节点。
  *   Created by wai-ngai on 24-9-10.
  */
 
@@ -31,11 +31,11 @@ int main(int argc, const char** argv) {
     int m, n, p1, p2, val;
     std::cin >> n >> m;
 
-    std::vector<std::list<Edge>> grid(n + 1);
+    std::vector<std::list<Edge>> grid(n + 1);  // 使用邻接表存储图
 
     for (int i = 0; i < m; i++) {
         std::cin >> p1 >> p2 >> val;
-        grid[p1].push_back(Edge(p2, val));  // p2指向p1，权值为val
+        grid[p1].push_back(Edge(p2, val));     // p2指向p1，权值为val
     }
 
     int start = 1;
@@ -45,7 +45,7 @@ int main(int argc, const char** argv) {
     std::vector<bool> visited(n + 1, false);    // 记录该节点是否被访问过
     min_dist[start] = 0;
 
-    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, MyCompare> pq;  // 优先级队列， 存放pair<节点， 起点到该节点的权重>
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, MyCompare> pq;  // 优先级队列， 存放 pair<节点，起点到该节点的权重>
     pq.push(std::pair<int, int>(start, 0));     // 初始化队列，起点到起点的距离为0
 
     while (!pq.empty()) {
@@ -53,6 +53,7 @@ int main(int argc, const char** argv) {
         // <节点， 源点到该节点的距离>
         std::pair<int, int> cur = pq.top();
         pq.pop();
+        
         if (visited[cur.first]) continue;
 
         // 2. 标记该节点
